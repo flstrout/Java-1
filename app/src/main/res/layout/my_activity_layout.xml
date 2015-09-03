@@ -8,55 +8,45 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
         android:textAllCaps="true"
-        android:text="@string/activityTitle"/>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.04" />
+        style="@style/styleTextView"
+        android:text="@string/activityTitle" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enterData"
-        android:id="@+id/textView" />
+        style="@style/styleTextView"
+        android:text="@string/enterData" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2" />
+        android:id="@+id/txt_Data" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/btnSubmit"
-        android:id="@+id/button" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.04" />
+        android:id="@+id/btn_submit" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enterIndex"
-        android:id="@+id/textView2" />
+        style="@style/styleTextView"
+        android:text="@string/enterIndex" />
 
     <EditText
         android:layout_width="97dp"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText3" />
+        android:id="@+id/int_Index" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/retrieveData"
-        android:id="@+id/button2" />
+        android:id="@+id/btn_retrieve" />
 
 
 </LinearLayout>

@@ -3,4 +3,10 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="activityTitle">Mastering Java Fundamentals</string>
+    <string name="btnSubmit">Submit Data</string>
+    <string name="enterData">Enter data into text field</string>
+    <string name="enterIndex">Enter Index #</string>
+    <string name="retrieveData">Retrieve Data</string>
+    <color name="green">#28ffb3</color>
 </resources>

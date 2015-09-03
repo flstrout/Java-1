@@ -2,36 +2,44 @@ package com.fredstrout.javafundamentals;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.my_activity_layout);
+
+        Button btnSubmit = (Button) findViewById(R.id.btn_submit);
+        btnSubmit.setOnClickListener(submitClicked);
+
+        Button btnRetrieve = (Button) findViewById(R.id.btn_retrieve);
+        btnRetrieve.setOnClickListener(retrieveClicked);
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    private View.OnClickListener submitClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            EditText txtData = (EditText) findViewById(R.id.txt_Data);
+            Log.i(TAG, "Data Submited: " + txtData.getText());
+            txtData.setText("");
         }
+    };
 
-        return super.onOptionsItemSelected(item);
-    }
+    private View.OnClickListener retrieveClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            EditText intIndex = (EditText) findViewById(R.id.int_Index);
+            Log.i(TAG, "Index Retrieved: " + intIndex.getText());
+            intIndex.setText("");
+        }
+    };
 }
