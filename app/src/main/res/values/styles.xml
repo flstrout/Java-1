@@ -6,8 +6,8 @@
     </style>
     
     <style name="styleTextView">
-        <item name="android:padding">10dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAllCaps="true"
-        style="@style/styleTextView"
+        android:padding="2dp"
+        android:textSize="16sp"
         android:text="@string/activityTitle" />
 
     <TextView
@@ -36,11 +37,12 @@
         android:text="@string/enterIndex" />
 
     <EditText
-        android:layout_width="97dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/int_Index" />
+        android:id="@+id/int_Index"
+        android:numeric="integer" />
 
     <Button
         android:layout_width="150dp"
