@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
 //    This is my Collection
     ArrayList<String> strDataSet= new ArrayList<>();
-    int totalLength = (int) 0;
+    double totalLength = (double) 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +65,12 @@ public class MainActivity extends AppCompatActivity {
 
 //                 Add the retrieved data to the collection
                 strDataSet.add(txtData.getText().toString());
+                totalLength = 0;
 
-//                 Temporary testing code - normally removed, left fyi
+//                Loop through strDataSet to sum up the total length of all the entries
                  for (int n = 0; n < strDataSet.size(); n++) {
-                     int obj = strDataSet.get(n).length();
-                     Log.i(TAG, String.valueOf(obj));
+                     double obj = (double) strDataSet.get(n).length();
+//                     Log.i(TAG, String.valueOf(obj));
                      totalLength = obj + totalLength;
                  }
 //                 Log.i(TAG, "Data Set: " + strDataSet);
