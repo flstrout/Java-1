@@ -8,5 +8,7 @@
     <string name="enterData">Enter data into the text field</string>
     <string name="enterIndex">Enter an Index #</string>
     <string name="retrieveData">Retrieve Data</string>
+    <string name="textAve">No Records, No Average</string>
+    <string name="textTotal">No Records</string>
     <color name="green">#28ffb3</color>
 </resources>

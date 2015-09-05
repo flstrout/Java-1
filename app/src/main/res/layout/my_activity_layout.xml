@@ -50,5 +50,22 @@
         android:text="@string/retrieveData"
         android:id="@+id/btn_retrieve" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/styleTextView"
+        android:text="@string/textAve"
+        android:id="@+id/txt_Average"
+        android:focusable="false"
+        android:enabled="false" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/styleTextView"
+        android:text="@string/textTotal"
+        android:id="@+id/txt_Records"
+        android:enabled="false" />
+
 
 </LinearLayout>

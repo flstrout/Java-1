@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
 //    This is my Collection
     ArrayList<String> strDataSet= new ArrayList<>();
+    int totalLength = (int) 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
 //            Get the data entered in the txt_Data EditText field
             EditText txtData = (EditText) findViewById(R.id.txt_Data);
+            EditText txtAve = (EditText) findViewById(R.id.txt_Average);
+            EditText txtRecs = (EditText) findViewById(R.id.txt_Records);
 
 //            Make sure there is data to get - prevents null entries
             if (txtData.length() == 0) // If no data -> display AlertDialog
@@ -64,14 +67,17 @@ public class MainActivity extends AppCompatActivity {
                 strDataSet.add(txtData.getText().toString());
 
 //                 Temporary testing code - normally removed, left fyi
-//                 for (int n = 0; n < strDataSet.size(); n++) {
-//                     Object obj = strDataSet.get(n);
-//                     Log.i(TAG, "Data Object = " + obj);
-//                 }
+                 for (int n = 0; n < strDataSet.size(); n++) {
+                     int obj = strDataSet.get(n).length();
+                     Log.i(TAG, String.valueOf(obj));
+                     totalLength = obj + totalLength;
+                 }
 //                 Log.i(TAG, "Data Set: " + strDataSet);
 
 //                 Clear the contents of the txt_Data EditText field
                 txtData.setText("");
+                txtAve.setText("Average length of records is: " + (totalLength / strDataSet.size()));
+                txtRecs.setText(strDataSet.size() + " Total records in collection.");
             }
         }
     };
