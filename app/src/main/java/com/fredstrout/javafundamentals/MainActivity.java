@@ -1,13 +1,21 @@
 package com.fredstrout.javafundamentals;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 //    This is my Collection
     ArrayList<String> strDataSet= new ArrayList<>();
     double totalLength = (double) 0;
+    boolean isDuplicate = (boolean) false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,18 @@ public class MainActivity extends AppCompatActivity {
             EditText txtAve = (EditText) findViewById(R.id.txt_Average);
             EditText txtRecs = (EditText) findViewById(R.id.txt_Records);
 
+
+            for (int c = 0; c < strDataSet.size(); c++) {
+                Log.i(TAG, String.valueOf(strDataSet.get(c)));
+                Log.i(TAG, String.valueOf(txtData.getText().toString()));
+                if (strDataSet.get(c) == txtData.getText().toString()) {
+                    isDuplicate = true;
+                }
+            }
+
+            Log.i(TAG, String.valueOf(isDuplicate));
+            Log.i(TAG, String.valueOf(strDataSet));
+
 //            Make sure there is data to get - prevents null entries
             if (txtData.length() == 0) // If no data -> display AlertDialog
             {
@@ -68,17 +89,46 @@ public class MainActivity extends AppCompatActivity {
                 totalLength = 0;
 
 //                Loop through strDataSet to sum up the total length of all the entries
-                 for (int n = 0; n < strDataSet.size(); n++) {
-                     double obj = (double) strDataSet.get(n).length();
+                for (int n = 0; n < strDataSet.size(); n++) {
+                    double obj = (double) strDataSet.get(n).length();
 //                     Log.i(TAG, String.valueOf(obj));
-                     totalLength = obj + totalLength;
-                 }
+                    totalLength = obj + totalLength;
+                }
 //                 Log.i(TAG, "Data Set: " + strDataSet);
+
+//                Added a toast message to confirm data submission success
+                Toast.makeText(getApplicationContext(), txtData.getText() + " has been added to the data set!",
+                        Toast.LENGTH_SHORT).show();
 
 //                 Clear the contents of the txt_Data EditText field
                 txtData.setText("");
-                txtAve.setText("Average length of records is: " + (totalLength / strDataSet.size()));
+
+//                Formated the output to no more than two decimals
+                txtAve.setText("Average length of records is: " + (new DecimalFormat("##.##").format((totalLength / strDataSet.size()))));
+
                 txtRecs.setText(strDataSet.size() + " Total records in collection.");
+
+//                Implement a Comparator to sort strDataSet by String.length
+                class comp implements Comparator<String> {
+                    @TargetApi(Build.VERSION_CODES.KITKAT)
+                    public int compare(String o1, String o2) {
+                        return Integer.compare(o1.length(), o2.length());
+                    }
+                }
+
+//                Instantiate the sort
+                Collections.sort(strDataSet, new comp());
+
+//                Calculate the median based off of strDataSet.size()
+                int median;
+                if (strDataSet.size()  == 1) {
+                    median = ((int) 0);
+                } else {
+                    median = (int) (strDataSet.size() / 2);
+                }
+//                Log.i(TAG, String.valueOf(strDataSet));
+                String retrievedData = strDataSet.get(median);
+                Log.i(TAG, "The collections median is " + retrievedData);
             }
         }
     };

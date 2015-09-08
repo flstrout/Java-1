@@ -10,5 +10,5 @@
     <string name="retrieveData">Retrieve Data</string>
     <string name="textAve">No Records, No Average</string>
     <string name="textTotal">No Records</string>
-    <color name="green">#28ffb3</color>
+    <color name="customColor">#E9EAED</color>
 </resources>

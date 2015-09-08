@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
+    android:background="@color/customColor"
     android:weightSum="1">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:textAllCaps="true"
         android:padding="2dp"
         android:textSize="16sp"
@@ -22,11 +23,13 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:id="@+id/txt_Data" />
 
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="@string/btnSubmit"
         android:id="@+id/btn_submit" />
 
@@ -39,6 +42,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/int_Index"
@@ -47,6 +51,7 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="@string/retrieveData"
         android:id="@+id/btn_retrieve" />
 
