@@ -10,5 +10,7 @@
     <string name="retrieveData">Retrieve Data</string>
     <string name="textAve">No Records, No Average</string>
     <string name="textTotal">No Records</string>
+    <string name="txtCollection">Collection</string>
+    <string name="txtMedian">Median</string>
     <color name="customColor">#E9EAED</color>
 </resources>

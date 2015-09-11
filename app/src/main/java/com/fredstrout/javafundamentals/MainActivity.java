@@ -2,6 +2,7 @@ package com.fredstrout.javafundamentals;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
             EditText txtData = (EditText) findViewById(R.id.txt_Data);
             EditText txtAve = (EditText) findViewById(R.id.txt_Average);
             EditText txtRecs = (EditText) findViewById(R.id.txt_Records);
+            EditText txtColl = (EditText) findViewById(R.id.txt_Collection);
+            EditText txtMed = (EditText) findViewById(R.id.txt_Median);
 
 
             for (int c = 0; c < strDataSet.size(); c++) {
@@ -94,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
 //                     Log.i(TAG, String.valueOf(obj));
                     totalLength = obj + totalLength;
                 }
-//                 Log.i(TAG, "Data Set: " + strDataSet);
 
 //                Added a toast message to confirm data submission success
                 Toast.makeText(getApplicationContext(), txtData.getText() + " has been added to the data set!",
@@ -127,8 +129,10 @@ public class MainActivity extends AppCompatActivity {
                     median = (int) (strDataSet.size() / 2);
                 }
 //                Log.i(TAG, String.valueOf(strDataSet));
+                txtColl.setText("Data Set Sorted by Length:\n" + strDataSet);
                 String retrievedData = strDataSet.get(median);
-                Log.i(TAG, "The collections median is " + retrievedData);
+                txtMed.setText("The collections median is " + retrievedData);
+//                Log.i(TAG, "The collections median is " + retrievedData);
             }
         }
     };
@@ -159,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             } else { // If data -> proceed with other checks
 
 //                Parse the absolute string value of intIndex into an Integer
-                int intIndex2 = Integer.parseInt(intIndex.getText().toString());
+                final int intIndex2 = Integer.parseInt(intIndex.getText().toString());
 
 //                Set an Integer Variable for the number of records in the collection
                 int dataSetSize = strDataSet.size();
@@ -184,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 }else if (dataSetSize > intIndex2) { // Passes dataSetSize Comparison -> execute
 
 //                    Get the record that matches the entered index number
-                    String retrievedData = strDataSet.get(intIndex2);
+                    final String retrievedData = strDataSet.get(intIndex2);
 
 //                    Build an AlertDialog to display the retrieved data
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
@@ -192,6 +196,60 @@ public class MainActivity extends AppCompatActivity {
                     builder1.setMessage(retrievedData);
                     builder1.setCancelable(true);
                     builder1.setPositiveButton("OK", null);
+                    builder1.setNegativeButton("Remove", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            EditText txtAve = (EditText) findViewById(R.id.txt_Average);
+                            EditText txtRecs = (EditText) findViewById(R.id.txt_Records);
+                            EditText txtColl = (EditText) findViewById(R.id.txt_Collection);
+                            EditText txtMed = (EditText) findViewById(R.id.txt_Median);
+
+                            strDataSet.remove(intIndex2);
+                            totalLength = 0;
+
+                            Toast.makeText(getApplicationContext(), retrievedData + " has been deleted from the data set!",
+                                    Toast.LENGTH_SHORT).show();
+                            txtAve.setText("Average length of records is: " + (new DecimalFormat("##.##").format((totalLength / strDataSet.size()))));
+
+                            txtRecs.setText(strDataSet.size() + " Total records in collection.");
+
+
+//                            Loop through strDataSet to sum up the total length of all the entries
+                            for (int n = 0; n < strDataSet.size(); n++) {
+                                double obj = (double) strDataSet.get(n).length();
+
+                                totalLength = obj + totalLength;
+                            }
+
+//                            Formated the output to no more than two decimals
+                            txtAve.setText("Average length of records is: " + (new DecimalFormat("##.##").format((totalLength / strDataSet.size()))));
+
+                            txtRecs.setText(strDataSet.size() + " Total records in collection.");
+
+//                            Implement a Comparator to sort strDataSet by String.length
+                            class comp implements Comparator<String> {
+                                @TargetApi(Build.VERSION_CODES.KITKAT)
+                                public int compare(String o1, String o2) {
+                                    return Integer.compare(o1.length(), o2.length());
+                                }
+                            }
+
+//                            Instantiate the sort
+                            Collections.sort(strDataSet, new comp());
+
+//                            Calculate the median based off of strDataSet.size()
+                            int median;
+                            if (strDataSet.size()  == 1) {
+                                median = ((int) 0);
+                            } else {
+                                median = (int) (strDataSet.size() / 2);
+                            }
+
+                            txtColl.setText("Data Set Sorted by Length:\n" + strDataSet);
+                            String retrievedData = strDataSet.get(median);
+                            txtMed.setText("The collections median is " + retrievedData);
+
+                        }
+                    });
 
 //                    Display the AlertDialog
                     AlertDialog alertDialog1 = builder1.create();
